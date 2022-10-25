@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Form demonstration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header th:insert="fragments/reusable.html :: header" />
+<form action="#" th:action="@{/form}" th:object="${demoForm}" method="post">
+    <table>
+        <tr>
+            <td>Request Type:</td>
+            <td>
+                <select th:field="*{requestType}">
+                    <option th:each="requestTypeOption : ${requestTypes}" th:value="${requestTypeOption}"
+                            th:text="${requestTypeOption}"></option>
+                </select>
+            </td>
+            <td th:if="${#fields.hasErrors('requestType')}" th:errors="*{requestType}">Request Type error</td>
+        </tr>
+        <tr>
+            <td>Policy Number:</td>
+            <td><input type="text" th:field="*{policyNumber}" /></td>
+            <td th:if="${#fields.hasErrors('policyNumber')}" th:errors="*{policyNumber}">Policy Number must be alphanumeric</td>
+        </tr>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name must be in letters only</td>
+        </tr>
+        <tr>
+            <td>Surname:</td>
+            <td><input type="text" th:field="*{surname}" /></td>
+            <td th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname must be in letters only</td>
+        </tr>
+        <tr>
+            <td>Request:</td>
+            <td><textarea th:field="*{request}" th:maxlength="5000"/></td>
+            <td th:if="${#fields.hasErrors('request')}" th:errors="*{request}">Request must be 5000 max characters</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

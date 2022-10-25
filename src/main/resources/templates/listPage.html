@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Last 10 saved requests</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+    <header th:insert="fragments/reusable.html :: header" />
+    <p>Last 10 saved requests</p>
+    <table th:insert="fragments/reusable.html :: savedRequests" />
+</body>
+</html>

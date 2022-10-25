@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Last 10 saved requests</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<header th:fragment="header">
+    <a href="/form">Show demo form</a> | <a href="/list">Last 10 requests</a>
+</header>
+<table th:fragment="savedRequests">
+    <tr>
+        <th>ID</th>
+        <th>CREATED</th>
+        <th>REQUEST TYPE</th>
+        <th>POLICY NUMBER</th>
+        <th>NAME</th>
+        <th>SURNAME</th>
+        <th>REQUEST</th>
+    </tr>
+    <tr th:each="savedRequest: ${savedRequests}">
+        <td th:text="${savedRequest.id}" />
+        <td th:text="${savedRequest.created}" />
+        <td th:text="${savedRequest.requestType}" />
+        <td th:text="${savedRequest.policyNumber}" />
+        <td th:text="${savedRequest.name}" />
+        <td th:text="${savedRequest.surname}" />
+        <td th:text="${#strings.abbreviate(savedRequest.request,100)}" />
+    </tr>
+</table>
+</body>
+</html>
