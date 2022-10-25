@@ -8,13 +8,16 @@ public class RequestForm {
 
     @NotNull
     private String requestType;
+    @Size(max = 100, message = "Policy number is limited to 100 characters")
     @Pattern(regexp = "^$|[A-Za-z0-9]+", message = "Policy Number must be alphanumeric")
     private String policyNumber;
+    @Size(max = 30, message = "Your name is too long (30 chars max)")
     @Pattern(regexp = "^$|[A-Za-z]+", message = "Name must be in letters only")
     private String name;
+    @Size(max = 60, message = "Your surname is too long (60 chars max)")
     @Pattern(regexp = "^$|[A-Za-z]+", message = "Surname must be in letters only")
     private String surname;
-    @Size(min = 10, max = 5000, message = "Please tell us at least 10 letters, but no more than 5000")
+    @Size(min = 10, max = 5000, message = "Please tell us at least 10 characters, but no more than 5000")
     private String request;
 
     public String getRequestType() {
