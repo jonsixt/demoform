@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class DemoForm {
+public class RequestForm {
 
     @NotNull
     private String requestType;
@@ -14,7 +14,7 @@ public class DemoForm {
     private String name;
     @Pattern(regexp = "^$|[A-Za-z]+", message = "Surname must be in letters only")
     private String surname;
-    @Size(max = 5000)
+    @Size(min = 10, max = 5000, message = "Please tell us at least 10 letters, but no more than 5000")
     private String request;
 
     public String getRequestType() {

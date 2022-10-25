@@ -6,7 +6,7 @@
 </head>
 <body>
 <header th:insert="fragments/reusable.html :: header" />
-<form action="#" th:action="@{/form}" th:object="${demoForm}" method="post">
+<form action="#" th:action="@{/form}" th:object="${requestForm}" method="post">
     <table>
         <tr>
             <td>Request Type:</td>

@@ -3,7 +3,7 @@ package com.jonsix.demoform;
 import com.jonsix.demoform.data.RequestType;
 import com.jonsix.demoform.data.RequestTypeRepository;
 import com.jonsix.demoform.data.SavedRequest;
-import com.jonsix.demoform.form.DemoForm;
+import com.jonsix.demoform.form.RequestForm;
 import com.jonsix.demoform.data.SavedRequestRepository;
 import com.jonsix.demoform.mapper.FormToRequestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +34,8 @@ public class DemoFormController {
     @GetMapping("/form")
     public String formRender(Model model) {
         populateRequestTypes(model);
-        model.addAttribute("demoForm", new DemoForm());
-        return "demoFormPage";
+        model.addAttribute("requestForm", new RequestForm());
+        return "requestFormPage";
     }
 
     private void populateRequestTypes(Model model) {
@@ -45,12 +45,12 @@ public class DemoFormController {
     }
 
     @PostMapping("/form")
-    public String formSubmit(@Valid @ModelAttribute DemoForm demoForm, BindingResult bindingResult, Model model) {
+    public String formSubmit(@Valid @ModelAttribute RequestForm requestForm, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             populateRequestTypes(model);
-            return "demoFormPage";
+            return "requestFormPage";
         }
-        SavedRequest savedRequest = savedRequestRepository.save(mapper.toSavedRequest(demoForm));
+        SavedRequest savedRequest = savedRequestRepository.save(mapper.toSavedRequest(requestForm));
         model.addAttribute("savedRequests", Collections.singletonList(savedRequest));
         return "thankYouPage";
     }
